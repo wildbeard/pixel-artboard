@@ -7,7 +7,8 @@
             <label for="color">
                 <input type="color"
                        id="color"
-                       v-model="color">
+                       v-model="color"
+                       @input="$emit('change-color', color)">
             </label>
         </div>
 
@@ -16,6 +17,7 @@
                 <input type="radio"
                        id="draw"
                        v-model="tool"
+                       @input="$emit('change-tool', tool)"
                        value="draw">
                 Draw
             </label>
@@ -26,13 +28,20 @@
                 <input type="radio"
                        id="eraser"
                        v-model="tool"
+                       @input="$emit('change-tool', tool)"
                        value="eraser">
                 Erase
             </label>
         </div>
 
         <div class="form-group">
+            <button @click="emitEvent('save-data')">Save Data</button><br>
+            <button @click="emitEvent('load-data')">Load Data</button><br>
+            <button @click="emitEvent('clear-data')">Clear Board</button><br>
+        </div>
 
+        <div class="form-group">
+            <button @click="emitEvent('save-image')">Save Image</button>
         </div>
 
     </div>
@@ -79,6 +88,11 @@ export default {
             color: '#000',
             tool: 'draw',
         }
+    },
+    methods: {
+        emitEvent(eventType) {
+            this.$emit(eventType)
+        },
     },
 }
 </script>
