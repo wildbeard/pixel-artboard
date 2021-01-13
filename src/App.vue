@@ -2,16 +2,18 @@
   <div id="app">
     <h1>Hey, Draw Some Stuff</h1>
     <div>
-      <artboard :tool="'draw'"
-                :color="'#000'"
+      <artboard :tool="tool"
+                :color="color"
                 :width="width"
                 :height="height" />
-      <controls />
+      <controls @change-tool="(payload) => tool = payload"
+                @change-color="(payload) => color = payload" />
     </div>
   </div>
 </template>
 
 <script>
+// @todo: better event management!
 import Artboard from './components/Artboard';
 import Controls from './components/ArtboardControls';
 export default {
@@ -24,6 +26,8 @@ export default {
     return {
       width: document.body.offsetWidth,
       height: document.documentElement.scrollHeight,
+      tool: 'draw',
+      color: '#000',
     }
   },
 }
