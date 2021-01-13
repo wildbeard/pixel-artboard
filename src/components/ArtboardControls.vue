@@ -17,7 +17,7 @@
                 <input type="radio"
                        id="draw"
                        v-model="tool"
-                       @input="$emit('change-tool', tool)"
+                       @input="$emit('change-tool', 'draw')"
                        value="draw">
                 Draw
             </label>
@@ -28,7 +28,7 @@
                 <input type="radio"
                        id="eraser"
                        v-model="tool"
-                       @input="$emit('change-tool', tool)"
+                       @input="$emit('change-tool', 'eraser')"
                        value="eraser">
                 Erase
             </label>
@@ -82,6 +82,7 @@ input {
 </style>
 
 <script>
+// @todo: Better events!
 export default {
     data() {
         return {
