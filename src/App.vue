@@ -30,17 +30,13 @@ export default {
       height: document.documentElement.scrollHeight,
       tool: 'draw',
       color: '#000',
-      board_data: {
-        drawn: [],
-        on_board: [],
-      },
+      board_data: [],
       from_data: [],
     }
   },
   methods: {
     updateBoardData(payload) {
-      this.board_data.drawn = payload.drawn;
-      this.board_data.on_board = payload.on_board;
+      this.board_data = payload.on_board;
     },
   }
 }
