@@ -66,6 +66,7 @@ export default {
     mounted() {
         this.canvas.width = this.width;
         this.canvas.height = this.height;
+        this.on_board = this.data;
         this.drawGrid();
     },
     methods: {
@@ -109,10 +110,20 @@ export default {
                 filled: true,
                 color: cell.color,
             });
+            const payload = {
+                drawn: this.drawn,
+                on_board: this.on_board,
+            }
+            this.$emit('updated-board', payload);
         },
         removeCell(index) {
             this.on_board.splice(index, 1);
             this.drawn.splice(index, 1);
+            const payload = {
+                drawn: this.drawn,
+                on_board: this.on_board,
+            }
+            this.$emit('updated-board', payload);
         },
         getCellInfo(event) {
             const clicked = this.getClickedPosition(event);

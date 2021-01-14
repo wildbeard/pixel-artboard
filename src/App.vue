@@ -5,7 +5,9 @@
       <artboard :tool="tool"
                 :color="color"
                 :width="width"
-                :height="height" />
+                :height="height"
+                :data="from_data"
+                @updated-board="updateBoardData" />
       <controls @change-tool="(payload) => tool = payload"
                 @change-color="(payload) => color = payload" />
     </div>
@@ -28,8 +30,19 @@ export default {
       height: document.documentElement.scrollHeight,
       tool: 'draw',
       color: '#000',
+      board_data: {
+        drawn: [],
+        on_board: [],
+      },
+      from_data: [],
     }
   },
+  methods: {
+    updateBoardData(payload) {
+      this.board_data.drawn = payload.drawn;
+      this.board_data.on_board = payload.on_board;
+    },
+  }
 }
 </script>
 
