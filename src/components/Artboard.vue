@@ -50,7 +50,6 @@ export default {
     },
     data() {
         return {
-            drawn: [],
             on_board: [],
             mouse_down: false,
         };
@@ -104,23 +103,14 @@ export default {
         },
         addCellToData(cell) {
             this.on_board.push(cell);
-            this.drawn.push({
-                x: cell.x !== 0 ? (cell.x + this.cellSize) / this.cellSize : cell.x,
-                y: cell.y !== 0 ? (cell.y + this.cellSize) / this.cellSize : cell.y,
-                filled: true,
-                color: cell.color,
-            });
             const payload = {
-                drawn: this.drawn,
                 on_board: this.on_board,
             }
             this.$emit('updated-board', payload);
         },
         removeCell(index) {
             this.on_board.splice(index, 1);
-            this.drawn.splice(index, 1);
             const payload = {
-                drawn: this.drawn,
                 on_board: this.on_board,
             }
             this.$emit('updated-board', payload);
