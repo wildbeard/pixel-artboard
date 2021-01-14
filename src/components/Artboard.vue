@@ -65,7 +65,7 @@ export default {
     mounted() {
         this.canvas.width = this.width;
         this.canvas.height = this.height;
-        this.on_board = this.data;
+        this.on_board = Array.from(this.data);
         this.drawGrid();
     },
     methods: {
